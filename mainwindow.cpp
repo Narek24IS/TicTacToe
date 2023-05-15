@@ -26,6 +26,7 @@ void MainWindow::setInterfaceStyle()
     ui->choiceOButton->setStyleSheet(StyleHelper::getOButtonStyle());
     ui->choiceXButton->setStyleSheet(StyleHelper::getXButtonStyle());
     ui->tabWidget->setStyleSheet(StyleHelper::getTabWidgetStyle()+StyleHelper::getBlankButtonStyle());
+    ui->gameResultLabel->setStyleSheet(StyleHelper::getLossGameResultLabelStyle());
 
     ui->pushButton_1->setStyleSheet(StyleHelper::getCrossNormalStyle());
     ui->pushButton_2->setStyleSheet(StyleHelper::getCrossVictoryStyle());

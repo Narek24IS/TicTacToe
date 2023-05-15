@@ -12,6 +12,8 @@ public:
     static QString getOButtonStyle();
     static QString getActiveOButtonStyle();
     static QString getTabWidgetStyle();
+    static QString getVictoryGameResultLabelStyle();
+    static QString getLossGameResultLabelStyle();
 
     static QString getBlankButtonStyle();
     static QString getCrossNormalStyle();

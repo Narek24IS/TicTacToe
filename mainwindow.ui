@@ -83,6 +83,12 @@
       </item>
       <item>
        <widget class="QLabel" name="gameResultLabel">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
         <property name="text">
          <string>Победа!</string>
         </property>

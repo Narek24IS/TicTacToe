@@ -98,6 +98,28 @@ QString StyleHelper::getTabWidgetStyle()
            "}";
 }
 
+QString StyleHelper::getVictoryGameResultLabelStyle()
+{
+    return "QLabel{"
+                "font-family: 'Roboto Medium';"
+                "font-size: 18px;"
+                "background: #055902;"
+                "border: 1px solid #1C7C32;"
+                "color: #ffffff;"
+           "}";
+}
+
+QString StyleHelper::getLossGameResultLabelStyle()
+{
+    return "QLabel{"
+               "font-family: 'Roboto Medium';"
+               "font-size: 18px;"
+               "background: #81071D;"
+               "border: 1px solid #A1072D;"
+               "color: #ffffff;"
+           "}";
+}
+
 QString StyleHelper::getBlankButtonStyle()
 {
     return "QPushButton{"
