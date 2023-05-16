@@ -2,14 +2,14 @@
 #include "ui_mainwindow.h"
 #include "stylehelper.h"
 #include <QTabBar>
+#include <QGridLayout>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tabWidget->tabBar()->hide();
-    ui->tabWidget->setCurrentIndex(0);
+    configurationTabWidget();
     setInterfaceStyle();
 }
 
@@ -28,12 +28,25 @@ void MainWindow::setInterfaceStyle()
     ui->tabWidget->setStyleSheet(StyleHelper::getTabWidgetStyle()+StyleHelper::getBlankButtonStyle());
     ui->gameResultLabel->setStyleSheet(StyleHelper::getLossGameResultLabelStyle());
 
-    ui->pushButton_1->setStyleSheet(StyleHelper::getCrossNormalStyle());
-    ui->pushButton_2->setStyleSheet(StyleHelper::getCrossVictoryStyle());
-    ui->pushButton_3->setStyleSheet(StyleHelper::getCrossLossStyle());
-    ui->pushButton_4->setStyleSheet(StyleHelper::getZeroNormalStyle());
-    ui->pushButton_5->setStyleSheet(StyleHelper::getZeroVictoryStyle());
-    ui->pushButton_6->setStyleSheet(StyleHelper::getZeroLossStyle());
+    changeButtonStyle(0, 0, StyleHelper::getCrossNormalStyle());
+    ui->pushButton_0_1->setStyleSheet(StyleHelper::getCrossVictoryStyle());
+    ui->pushButton_0_2->setStyleSheet(StyleHelper::getCrossLossStyle());
+    ui->pushButton_1_0->setStyleSheet(StyleHelper::getZeroNormalStyle());
+    ui->pushButton_1_1->setStyleSheet(StyleHelper::getZeroVictoryStyle());
+    ui->pushButton_1_2->setStyleSheet(StyleHelper::getZeroLossStyle());
+}
+
+void MainWindow::configurationTabWidget()
+{
+    ui->tabWidget->tabBar()->hide();
+    ui->tabWidget->setCurrentIndex(0);
+}
+
+void MainWindow::changeButtonStyle(int row, int coloumn, QString style)
+{
+    QGridLayout *grid = qobject_cast <QGridLayout*>(ui->gameTab->layout());
+    QPushButton *btn = qobject_cast <QPushButton*>(grid->itemAtPosition(row, coloumn)->widget());
+    btn->setStyleSheet(style);
 }
 
 

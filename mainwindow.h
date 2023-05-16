@@ -17,11 +17,19 @@ public:
 
 private slots:
     void on_choiceXButton_clicked();
-
     void on_choiceOButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     void setInterfaceStyle();
+    void configurationTabWidget();
+    void changeButtonStyle(int row, int coloumn, QString style);
+    char gameArea[3][3] = {
+        {'-','-', '-'},
+        {'-','-', '-'},
+        {'-','-', '-'}
+    };
+    char player = 'X';
+    int progress = 0;
 };
 #endif // MAINWINDOW_H
