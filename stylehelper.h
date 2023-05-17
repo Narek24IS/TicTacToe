@@ -5,15 +5,21 @@
 class StyleHelper
 {
 public:
-    static QString getButtonStyle();
     static QString getMainWindowStyle();
-    static QString getXButtonStyle();
-    static QString getActiveXButtonStyle();
-    static QString getOButtonStyle();
-    static QString getActiveOButtonStyle();
     static QString getTabWidgetStyle();
+    static QString getAboutGameStyle();
+
+    static QString getStartButtonStyle();
+    static QString getLoseButtonStyle();
+
+    static QString getXButtonStyle();
+    static QString getOButtonStyle();
+    static QString getActiveXButtonStyle();
+    static QString getActiveOButtonStyle();
+
+    static QString getInfoGameResultLabelStyle();
     static QString getVictoryGameResultLabelStyle();
-    static QString getLossGameResultLabelStyle();
+    static QString getLoseGameResultLabelStyle();
 
     static QString getBlankButtonStyle();
     static QString getCrossNormalStyle();
