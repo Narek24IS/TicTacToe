@@ -151,58 +151,115 @@ void MainWindow::winGame()
     ui->gameStartButton->setStyleSheet(StyleHelper::getStartButtonStyle());
 }
 /*Проверка на конец игры. Окрашивает победную комбинацию*/
-bool MainWindow::gameEndCheck(char symbol)
+bool MainWindow::gameEndCheck(char symbol, QString current)
 {
-    for (int i = 0; i < 3; ++i)
-    {
-        if(gameArea[i][0]==symbol and gameArea[i][1]==symbol and gameArea[i][2]==symbol)
-        {
-            for (int j = 0; j < 3; ++j) {
-                if(symbol == 'X')
-                    changeButtonStyle(i, j, StyleHelper::getCrossVictoryStyle());
-                else
-                    changeButtonStyle(i, j, StyleHelper::getZeroVictoryStyle());
-            }
-            return true;
-        }
-        else if(gameArea[0][i]==symbol and gameArea[1][i]==symbol and gameArea[2][i]==symbol)
-        {
-            for (int j = 0; j < 3; ++j)
-            {
-                if(symbol == 'X')
-                    changeButtonStyle(j, i, StyleHelper::getCrossVictoryStyle());
-                else
-                    changeButtonStyle(j, i, StyleHelper::getZeroVictoryStyle());
-            }
-            return true;
-        }
-    }
-    if(gameArea[0][0]==symbol and gameArea[1][1]==symbol and gameArea[2][2]==symbol)
+    if(current == "player")
     {
         for (int i = 0; i < 3; ++i)
         {
+            if(gameArea[i][0]==symbol and gameArea[i][1]==symbol and gameArea[i][2]==symbol)
+            {
+                for (int j = 0; j < 3; ++j) {
+                    if(symbol == 'X')
+                        changeButtonStyle(i, j, StyleHelper::getCrossVictoryStyle());
+                    else
+                        changeButtonStyle(i, j, StyleHelper::getZeroVictoryStyle());
+                }
+                return true;
+            }
+            else if(gameArea[0][i]==symbol and gameArea[1][i]==symbol and gameArea[2][i]==symbol)
+            {
+                for (int j = 0; j < 3; ++j)
+                {
+                    if(symbol == 'X')
+                        changeButtonStyle(j, i, StyleHelper::getCrossVictoryStyle());
+                    else
+                        changeButtonStyle(j, i, StyleHelper::getZeroVictoryStyle());
+                }
+                return true;
+            }
+        }
+        if(gameArea[0][0]==symbol and gameArea[1][1]==symbol and gameArea[2][2]==symbol)
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                if(symbol == 'X')
+                    changeButtonStyle(i, i, StyleHelper::getCrossVictoryStyle());
+                else
+                    changeButtonStyle(i, i, StyleHelper::getZeroVictoryStyle());
+            }
+            return true;
+        }
+        else if(gameArea[0][2]==symbol and gameArea[1][1]==symbol and gameArea[2][0]==symbol)
+        {
             if(symbol == 'X')
-                changeButtonStyle(i, i, StyleHelper::getCrossVictoryStyle());
+            {
+                changeButtonStyle(0, 2, StyleHelper::getCrossVictoryStyle());
+                changeButtonStyle(1, 1, StyleHelper::getCrossVictoryStyle());
+                changeButtonStyle(2, 0, StyleHelper::getCrossVictoryStyle());
+            }
             else
-                changeButtonStyle(i, i, StyleHelper::getZeroVictoryStyle());
+            {
+                changeButtonStyle(0, 2, StyleHelper::getZeroVictoryStyle());
+                changeButtonStyle(1, 1, StyleHelper::getZeroVictoryStyle());
+                changeButtonStyle(2, 0, StyleHelper::getZeroVictoryStyle());
+            }
+            return true;
         }
-        return true;
     }
-    else if(gameArea[0][2]==symbol and gameArea[1][1]==symbol and gameArea[2][0]==symbol)
+    else
     {
-        if(symbol == 'X')
+        for (int i = 0; i < 3; ++i)
         {
-            changeButtonStyle(0, 2, StyleHelper::getCrossVictoryStyle());
-            changeButtonStyle(1, 1, StyleHelper::getCrossVictoryStyle());
-            changeButtonStyle(2, 0, StyleHelper::getCrossVictoryStyle());
+            if(gameArea[i][0]==symbol and gameArea[i][1]==symbol and gameArea[i][2]==symbol)
+            {
+                for (int j = 0; j < 3; ++j) {
+                    if(symbol == 'X')
+                        changeButtonStyle(i, j, StyleHelper::getCrossLossStyle());
+                    else
+                        changeButtonStyle(i, j, StyleHelper::getZeroLossStyle());
+                }
+                return true;
+            }
+            else if(gameArea[0][i]==symbol and gameArea[1][i]==symbol and gameArea[2][i]==symbol)
+            {
+                for (int j = 0; j < 3; ++j)
+                {
+                    if(symbol == 'X')
+                        changeButtonStyle(j, i, StyleHelper::getCrossLossStyle());
+                    else
+                        changeButtonStyle(j, i, StyleHelper::getZeroLossStyle());
+                }
+                return true;
+            }
         }
-        else
+        if(gameArea[0][0]==symbol and gameArea[1][1]==symbol and gameArea[2][2]==symbol)
         {
-            changeButtonStyle(0, 2, StyleHelper::getZeroVictoryStyle());
-            changeButtonStyle(1, 1, StyleHelper::getZeroVictoryStyle());
-            changeButtonStyle(2, 0, StyleHelper::getZeroVictoryStyle());
+            for (int i = 0; i < 3; ++i)
+            {
+                if(symbol == 'X')
+                    changeButtonStyle(i, i, StyleHelper::getCrossLossStyle());
+                else
+                    changeButtonStyle(i, i, StyleHelper::getZeroLossStyle());
+            }
+            return true;
         }
-        return true;
+        else if(gameArea[0][2]==symbol and gameArea[1][1]==symbol and gameArea[2][0]==symbol)
+        {
+            if(symbol == 'X')
+            {
+                changeButtonStyle(0, 2, StyleHelper::getCrossLossStyle());
+                changeButtonStyle(1, 1, StyleHelper::getCrossLossStyle());
+                changeButtonStyle(2, 0, StyleHelper::getCrossLossStyle());
+            }
+            else
+            {
+                changeButtonStyle(0, 2, StyleHelper::getZeroLossStyle());
+                changeButtonStyle(1, 1, StyleHelper::getZeroLossStyle());
+                changeButtonStyle(2, 0, StyleHelper::getZeroLossStyle());
+            }
+            return true;
+        }
     }
     return false;
 }
@@ -274,7 +331,7 @@ void MainWindow::onGameAreaClickedButtonClicked()
             }
             gameArea[row][coloumn] = player;
             progress++;
-            if(gameEndCheck(player))
+            if(gameEndCheck(player, "player"))
             {
                 winGame();
             }
@@ -302,7 +359,7 @@ void MainWindow::onComputerSlot()
             if(gameArea[row][coloumn] == '-')
             {
                 gameArea[row][coloumn] = computer;
-                if(gameEndCheck(computer))
+                if(gameEndCheck(computer, "computer"))
                 {
                     loseGame();
                     timer->stop();
@@ -361,7 +418,7 @@ void MainWindow::onComputerSlot()
             }
             gameArea[row][coloumn] = computer;
             progress++;
-            if(gameEndCheck(computer))
+            if(gameEndCheck(computer, "computer"))
             {
                 loseGame();
             }

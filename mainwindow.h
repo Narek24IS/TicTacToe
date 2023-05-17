@@ -44,7 +44,7 @@ private:
     void startNewGame();
     void loseGame();
     void winGame();
-    bool gameEndCheck(char symbol);
+    bool gameEndCheck(char symbol, QString current);
     bool gameEndCheckTactic(char symbol);
 
 
