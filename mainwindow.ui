@@ -93,7 +93,7 @@
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>Начните игру</string>
+         <string>Выберите за кого играть</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

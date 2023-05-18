@@ -56,10 +56,14 @@ void MainWindow::setInterfaceStyle()
     this->setStyleSheet(StyleHelper::getMainWindowStyle());
 
     ui->gameStartButton->setStyleSheet(StyleHelper::getStartButtonStyle());
+    ui->gameStartButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->infoButton->setStyleSheet(StyleHelper::getStartButtonStyle());
+    ui->infoButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->choiceOButton->setStyleSheet(StyleHelper::getOButtonStyle());
+    ui->choiceOButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->choiceXButton->setStyleSheet(StyleHelper::getActiveXButtonStyle());
+    ui->choiceXButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     ui->tabWidget->setStyleSheet(StyleHelper::getTabWidgetStyle());
     ui->gameResultLabel->setStyleSheet(StyleHelper::getInfoGameResultLabelStyle());
@@ -85,6 +89,7 @@ void MainWindow::changeButtonStyle(int row, int coloumn, QString style)
 {
     QGridLayout *grid = qobject_cast <QGridLayout*>(ui->gameTab->layout());
     QPushButton *btn = qobject_cast <QPushButton*>(grid->itemAtPosition(row, coloumn)->widget());
+    btn->setCursor(QCursor(Qt::PointingHandCursor));
     btn->setStyleSheet(style);
 }
 
@@ -110,7 +115,7 @@ void MainWindow::startNewGame()
     setGameAreaButtonStyle();
 
     if(player == 'O')
-        timer->start(1500);
+        timer->start(1000);
 }
 /*Изменение интерфейса для сообщения о проигрыше*/
 void MainWindow::loseGame()
@@ -343,7 +348,7 @@ void MainWindow::onGameAreaClickedButtonClicked()
             }
             else
             {
-                timer->start(1500);
+                timer->start(1000);
             }
         }
     }

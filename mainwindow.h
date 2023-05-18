@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QTabBar>
 #include <QGridLayout>
+#include <QCursor>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
